@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Visualizing certain US Statistics by State</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Visualizing certain US Statistics by State">
+  <meta name="author" content="AM">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="libraries/widgets/bootstrap/css/bootstrap.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>Visualizing certain US Statistics by State</h1>
+    <h2>Assignment for 'Developing Data Products'</h2>
+    <p>AM<br/></p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>Dataset</h2>
+  </hgroup>
+  <article data-timings="">
+    <ol>
+<li>I used data from the state dataset available within R.</li>
+<li>Specifically the visualization will be for the dataset state.x77.</li>
+<li>I concentrated on the first five columns - Population, Income, Illiteracy, Life Expectancy and Murder rate.</li>
+</ol>
+
+<pre><code class="r">data(state)
+
+# Display the first few entries in activity data frame
+head(state.x77[, 1:5])
+</code></pre>
+
+<pre><code>##            Population Income Illiteracy Life Exp Murder
+## Alabama          3615   3624        2.1    69.05   15.1
+## Alaska            365   6315        1.5    69.31   11.3
+## Arizona          2212   4530        1.8    70.55    7.8
+## Arkansas         2110   3378        1.9    70.66   10.1
+## California      21198   5114        1.1    71.71   10.3
+## Colorado         2541   4884        0.7    72.06    6.8
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Generating gradient fill maps</h2>
+  </hgroup>
+  <article data-timings="">
+    <ol>
+<li>I used the maps and ggplot2 packages to visualize the data. </li>
+<li>For every variable of interest, I created a gradient of fill colors where the intensity of each state is in accordance with the value of that variable for that state.
+<img src="assets/fig/unnamed-chunk-2.png" alt="plot of chunk unnamed-chunk-2"> </li>
+</ol>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Generating data tables</h2>
+  </hgroup>
+  <article data-timings="">
+    <ol>
+<li>In addition to visualizing data on the map, we can read off the data values from the tables that are generated for each variable.</li>
+<li>This data is searchable by state (due to the nature of data table structure, the search is case sensitive) and by value of the chosen variable.</li>
+<li>The data can be sorted alphabetically by state name or numerically by value of the variable.</li>
+</ol>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Computing correlations between variables</h2>
+  </hgroup>
+  <article data-timings="">
+    <ol>
+<li>I have provided an easy interface to compute the correlation coefficient between the values of any two chosen variables.</li>
+<li>Two variables can be chosen from drop down menus.</li>
+<li>The correlation coefficient will be displayed at the bottom.</li>
+<li>As an example we compute the correlation coefficient between Population and Income values for US states:</li>
+</ol>
+
+<pre><code class="r">data(state)
+state_data &lt;- data.frame(state.x77)
+cor(state_data$Population, state_data$Income)
+</code></pre>
+
+<pre><code>## [1] 0.2082
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='Dataset'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='Generating gradient fill maps'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='Generating data tables'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Computing correlations between variables'>
+         4
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  <script src="libraries/widgets/bootstrap/js/bootstrap.min.js"></script>
+<script src="libraries/widgets/bootstrap/js/bootbox.min.js"></script>
+
+  <script>  
+  $(function (){ 
+    $("#example").popover(); 
+    $("[rel='tooltip']").tooltip(); 
+  });  
+  </script>  
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
